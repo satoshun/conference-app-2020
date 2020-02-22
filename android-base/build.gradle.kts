@@ -78,13 +78,17 @@ android {
         exclude("META-INF/proguard/*.pro")
     }
     dynamicFeatures = hashSetOf(
-            ":feature:staff",
-            ":feature:preference",
-            ":feature:contributor"
+        ":feature:staff",
+        ":feature:preference",
+        ":feature:contributor"
     )
     testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
         animationsDisabled = true
+    }
+
+    buildFeatures {
+        compose = true
     }
 }
 
@@ -125,6 +129,12 @@ dependencies {
     compileOnly(Dep.Dagger.assistedInjectAnnotations)
     kapt(Dep.Dagger.assistedInjectProcessor)
     implementation(Dep.Groupie.groupie)
+
+    api("androidx.compose:compose-runtime:0.1.0-dev05")
+    api("androidx.ui:ui-tooling:0.1.0-dev05")
+    api("androidx.ui:ui-layout:0.1.0-dev05")
+    api("androidx.ui:ui-material:0.1.0-dev05")
+    api("androidx.ui:ui-animation:0.1.0-dev05")
 
     testImplementation(Dep.Test.junit)
     androidTestImplementation(Dep.Test.testRunner)
